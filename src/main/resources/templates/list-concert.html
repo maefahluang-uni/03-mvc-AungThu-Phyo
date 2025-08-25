@@ -1,28 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concert List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎶 Concert List</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px #000;
+    }
+
+    a.add-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff512f, #dd2476);
+      border-radius: 30px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 30px;
+      transition: 0.3s;
+    }
+
+    a.add-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    li {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    li:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .concert-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffdf6c;
+    }
+
+    .concert-meta {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    .delete-btn {
+      align-self: flex-end;
+      background: #ff4b2b;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: #ff1c1c;
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-    <h1>Concert List</h1>
-    <a href="/add-concert/">Add Concert</a>
-    <!-- TODO: show delete link for each concert -->
-    <ul>
-        <li th:each="concert : ${concerts}">
-            <a  th:href="@{/delete-concert/{id}(id=${concert.id})}">Delete</a>
-            <span th:text="${concert.title}"></span> 
-            <span th:text="${concert.performer}"></span>
-            <span th:text="${concert.date}"></span>
-            <span th:text="${concert.description}"></span>
-        </li>
-    <!-- TODO: Add list of concerts -->
-     
+  <h1>🎤 Upcoming Concerts 🎶</h1>
+
+  <a class="add-btn" href="/add-concert/">➕ Add a New Concert</a>
+
+  <ul>
+    <li th:each="concert : ${concerts}">
+      <span class="concert-title" th:text="${concert.title}">Concert Title</span>
+      <span class="concert-meta">🎸 <span th:text="${concert.performer}">Performer</span></span>
+      <span class="concert-meta">📅 <span th:text="${concert.date}">Date</span></span>
+      <span class="concert-meta">📝 <span th:text="${concert.description}">Description</span></span>
+      
+      <a class="delete-btn" th:href="@{/delete-concert/{id}(id=${concert.id})}">🗑 Delete</a>
+    </li>
+  </ul>
+
 </body>
 </html>
-<!-- id: This attribute will store the unique id of the concert.
-title: This attribute will store the name of the concert.
-performer: This attribute will store the name of the performer.
-date: This attribute will store the date of the concert.
-description -->

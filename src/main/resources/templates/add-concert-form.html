@@ -1,30 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Concert</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎶 Add Concert</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      width: 350px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0 8px #00f2fe;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff512f, #dd2476);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .emoji {
+      margin-right: 8px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Add Concert</h1>
-    <!-- add form for adding concert-->
-    <form th:action="@{/concerts}" th:object="${concert}" method="post">
-        <label for="title">Title:</label>
-        <input type="text" id="title" th:field="*{title}" required><br>
-        <label for="performer">performer:</label>
-        <input type="text" id="performer" th:field="*{performer}" required><br>
-        <label for="date">Date:</label>
-        <input type="date" id="date" th:field="*{date}" required><br>
-        <label for="desc">Description:</label>
-        <input type="textarea" id="desc" th:field="*{description}" required><br>
-        <button type="submit">Save Employee</button>
-    </form>
+  <h1>🎤 Add a Rockin’ Concert 🎶</h1>
 
+  <form th:action="@{/concerts}" th:object="${concert}" method="post">
+    <label for="title"><span class="emoji">📛</span> Concert Title:</label>
+    <input type="text" id="title" th:field="*{title}" placeholder="Enter concert name..." required>
+
+    <label for="performer"><span class="emoji">🎸</span> Performer:</label>
+    <input type="text" id="performer" th:field="*{performer}" placeholder="Who’s rocking the stage?" required>
+
+    <label for="date"><span class="emoji">📅</span> Date:</label>
+    <input type="date" id="date" th:field="*{date}" required>
+
+    <label for="desc"><span class="emoji">📝</span> Description:</label>
+    <textarea id="desc" th:field="*{description}" placeholder="Write something cool about this concert..." rows="3" required></textarea>
+
+    <button type="submit">🔥 Save This Concert 🔥</button>
+  </form>
 </body>
 </html>
-<!-- 
-id: This attribute will store the unique id of the concert.
-title: This attribute will store the name of the concert.
-performer: This attribute will store the name of the performer.
-date: This attribute will store the date of the concert.
-description: This attribute will store the description of the concert. -->
