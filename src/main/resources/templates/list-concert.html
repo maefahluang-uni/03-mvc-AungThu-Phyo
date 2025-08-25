@@ -9,7 +9,20 @@
     <h1>Concert List</h1>
     <a href="/add-concert/">Add Concert</a>
     <!-- TODO: show delete link for each concert -->
-
+    <ul>
+        <li th:each="concert : ${concerts}">
+            <a  th:href="@{/delete-concert/{id}(id=${concert.id})}">Delete</a>
+            <span th:text="${concert.title}"></span> 
+            <span th:text="${concert.performer}"></span>
+            <span th:text="${concert.date}"></span>
+            <span th:text="${concert.description}"></span>
+        </li>
     <!-- TODO: Add list of concerts -->
+     
 </body>
 </html>
+<!-- id: This attribute will store the unique id of the concert.
+title: This attribute will store the name of the concert.
+performer: This attribute will store the name of the performer.
+date: This attribute will store the date of the concert.
+description -->
